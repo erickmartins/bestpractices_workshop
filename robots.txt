@@ -1,0 +1,1 @@
+Sitemap: https://erickmartins.github.io/bestpractices_workshop/sitemap.xml
