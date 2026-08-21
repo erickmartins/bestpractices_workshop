@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-08-18">
+<meta name="dcterms.date" content="2026-08-21">
 
 <title>typing – Best Practices in Python Workshop</title>
 <style>
@@ -398,7 +398,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 18, 2026</p>
+      <p class="date">August 21, 2026</p>
     </div>
   </div>
   
@@ -435,7 +435,7 @@ Type hints are part of the Python standard library since Python 3.5. For more de
 <li><code>list</code>, <code>dict</code>, <code>set</code>, <code>tuple</code>: Collection types.</li>
 </ul>
 <p>These can be combined using bracket notation like: <code>list[int]</code>, <code>dict[str, float]</code>, etc.</p>
-<p>You can also import additional types from the <a href="https://docs.python.org/3/library/typing.html#"><code>typing</code> module</a> or other modules you use</p></li>
+<p>You can also import additional types from the <a href="https://docs.python.org/3/library/typing.html#"><code>typing</code> module</a> or other modules you use.</p></li>
 <li><p>Type hints are not enforced at runtime, but you can use tools like <a href="https://mypy-lang.org/"><code>mypy</code></a> to check your code for type errors. To check your typed code, run:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mypy</span> your_script.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>mypy</code> will report any type mismatches it finds, helping you catch bugs before they happen.</p></li>

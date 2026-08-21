@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-08-18">
+<meta name="dcterms.date" content="2026-08-21">
 
 <title>conda – Best Practices in Python Workshop</title>
 <style>
@@ -117,6 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <meta property="og:title" content="Best Practices in Python Workshop">
+<meta property="og:description" content="">
 <meta property="og:site_name" content="Best Practices in Python Workshop">
 </head>
 
@@ -380,7 +381,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#working-with-virtual-environments-and-conda" id="toc-working-with-virtual-environments-and-conda" class="nav-link active" data-scroll-target="#working-with-virtual-environments-and-conda">Working with virtual environments and conda</a>
   <ul class="collapse">
-  <li><a href="#installing-conda-if-you-dont-have-it-already" id="toc-installing-conda-if-you-dont-have-it-already" class="nav-link" data-scroll-target="#installing-conda-if-you-dont-have-it-already">Installing conda, <em>if you don’t have it already</em></a></li>
   <li><a href="#environments-how-do-they-work" id="toc-environments-how-do-they-work" class="nav-link" data-scroll-target="#environments-how-do-they-work">Environments: how do they work?</a></li>
   <li><a href="#installing-packages-in-your-environment" id="toc-installing-packages-in-your-environment" class="nav-link" data-scroll-target="#installing-packages-in-your-environment">Installing packages in your environment</a></li>
   <li><a href="#some-advice-on-projects-and-dependencies" id="toc-some-advice-on-projects-and-dependencies" class="nav-link" data-scroll-target="#some-advice-on-projects-and-dependencies">Some advice on projects and dependencies</a></li>
@@ -404,7 +404,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 18, 2026</p>
+      <p class="date">August 21, 2026</p>
     </div>
   </div>
   
@@ -427,10 +427,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>A package management tool</strong>: a tool to install, update, and remove packages within an environment</li>
 </ul></li>
 <li><p><a href="https://conda.org"><code>Conda</code></a> is a tool that combines all three of these functionalities. It allows you to create and manage virtual environments, manage different versions of Python, and install packages. Conda is particularly popular in the scientific Python community due to its ability to handle complex system-level dependencies, such as GPU support, and its support for packages outside of the Python ecosystem (such as R, C libraries, etc).</p></li>
-<li><p>There are other tools that can be used to manage virtual environments, such as <a href="https://docs.python.org/3/library/venv.html"><code>venv</code></a> (built into Python) and newer ones like <a href="https://docs.astral.sh/uv/"><code>uv</code></a> and <a href="https://pixi.sh/latest/"><code>pixi</code></a>. These use a <strong>project</strong> oriented approach, where the environment is tied to a specific project directory. Conda, on the other hand creates and manages environments centrally, independently of any specific directory. At the end of the day, it’s a matter of preference and use case, but the key take home message is to actually <strong>always use virtual environments for your projects!</strong></p></li>
+<li><p>There are other tools that can be used to manage virtual environments, such as <a href="https://docs.python.org/3/library/venv.html"><code>venv</code></a> (built into Python) and newer ones like <a href="https://docs.astral.sh/uv/"><code>uv</code></a> and <a href="https://pixi.sh/latest/"><code>pixi</code></a>. These use a <strong>project</strong> oriented approach, where the environment is tied to a specific project directory. Conda, on the other hand creates and manages environments centrally, independently of any specific directory. At the end of the day, it’s a matter of preference and use case, but the key take home message is to <strong>always use virtual environments for your projects!</strong> ## Installing conda, <em>if you don’t have it already</em></p></li>
 </ol>
-<section id="installing-conda-if-you-dont-have-it-already" class="level2">
-<h2 class="anchored" data-anchor-id="installing-conda-if-you-dont-have-it-already">Installing conda, <em>if you don’t have it already</em></h2>
 <p>(Note: I encourage using <code>conda</code> version no older than 23.10.)</p>
 <ol type="1">
 <li>There are several distributions of <code>conda</code> and it can pull packages from many different sources called “channels”. In this workshop we will use the <a href="https://conda-forge.org">conda-forge</a> distribution called “miniforge” (or “miniforge3”).
@@ -443,18 +441,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>Open a NEW terminal window. If you see <code>(base)</code> at the beginning of your prompt, you have installed it successfully. You can also run <code>conda --version</code> and see if you get a version output.</li>
 </ol>
-</section>
 <section id="environments-how-do-they-work" class="level2">
 <h2 class="anchored" data-anchor-id="environments-how-do-they-work">Environments: how do they work?</h2>
 <ol type="1">
 <li><p>The <code>(base)</code> at the beginning of the line indicates which conda environment is currently active: the <code>base</code> environment. Each environment will have its own version of Python, with its own packages. Conda takes care of all dependencies and so on.</p></li>
-<li><p><strong>VERY IMPORTANTLY, DO NOT INSTALL THINGS ON THE BASE ENVIRONMENT.</strong> It’s a sure way to make things more confusing for yourself. Anything you do should have its <em>own environment</em>. You should never be doing any work on your base environment: it’s the environment <code>conda</code> uses to run itself, so a conflict or problem there can break your entire <code>conda</code> installation.</p></li>
+<li><p><strong>VERY IMPORTANTLY, DO NOT INSTALL THINGS ON THE BASE ENVIRONMENT.</strong> It’s a sure way to make things more confusing for yourself. Anything you do should have its <em>own environment</em>. You should never be doing any work on your base environment: it’s the environment <code>conda</code> uses to run itself, so a conflict or problem there can break your entire <code>conda</code> installation. This is the #1 mistake people new to <code>conda</code> make and a very common source of frustration.</p></li>
 <li><p>So first of all, let’s try to create a new, “clean” environment. Type:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> bestpractices</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This will create a new environment named “bestpractices” (<code>-n</code> is shorthand for <code>--name</code>). Let’s activate it, so we can use it. Type:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate bestpractices</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This should change the beginning of your prompt to <code>(bestpractices)</code>.<br>
-<strong>Always remember to activate the environment you want to use or make changes to!</strong></p></li>
+<strong>Always remember to activate the environment you want to use or make changes to!</strong> If you do not activate an environment, anything you do will be done to the <code>base</code> environment - and as we just discussed on point 2, you <strong>NEVER</strong> want to do that.</p></li>
 <li><p>Try running <code>python</code>. It probably didn’t work. Why?</p></li>
 <li><p>Let’s deactivate this empty environment and delete it. To deactivate, type:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> deactivate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -462,9 +459,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> remove <span class="at">-n</span> bestpractices <span class="at">--all</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Try running <code>conda env list</code> and you will see you have no environments other than <code>base</code>.</p></li>
 <li><p>Now let’s try to create an environment <em>with</em> Python. Type:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> bestpractices python=3.13</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>(or pick a version of your choice). Activate your new environment as before and try:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> bestpractices python=3.14</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>(or pick a version of your choice). Activate your new environment as before with</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate bestpractices</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>and try:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can also try <code>which python</code>, depending on your platform. This should show you a path within the newly created environment, under your user, in a miniforge directory, rather than in a system location like <code>/bin</code> or <code>/usr/bin</code>.</p></li>
 <li><p>Now try running <code>python</code> to launch the interpreter and then <code>import numpy as np</code>. This should fail, but why?</p></li>
 </ol>
@@ -482,12 +481,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Generally, you can use either method, but <em>mixing</em> them can sometimes lead to conflicts. If you do use both, try to install what you need using <code>conda</code> first and then use <code>pip</code> for packages that are not available via <code>conda</code>.</p></li>
 <li><p>Try running step 7 from above again. It should work now.</p></li>
 <li><p>Now let’s deactivate and delete this environment, as before using <code>conda deactivate</code> and <code>conda env remove -n bestpractices</code>.</p></li>
-<li><p>This time, we will try to create an environment using the <em>environment.yml</em> in this repository. Navigate to where you cloned the workshop repository in your terminal and have a look at the contents of <em>environment.yml</em>.</p></li>
+<li><p>This time, we will try to create an environment using the <em>environment.yml</em> in this repository. Navigate to where you cloned or downloaded the workshop repository in your terminal and have a look at the contents of <em>environment.yml</em>.</p></li>
 <li><p>Now, run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This will create a new environment named <code>bestpractices_final</code> with all the packages specified in the <em>environment.yml</em> file (<code>-f</code> is shorthand for <code>--file</code>). Activating the new environment as before, using <code>conda activate bestpractices_final</code> (why is this the name?) and try running <code>python --version</code>. Try running <code>conda list</code> to see all the installed packages. Everything listed in the <code>environment.yml</code> should be there, along with all dependencies.<br>
-Note: The <code>pip</code> equivalent, <em>once you have an activated virtual environment with a Python interpreter</em>, is:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This will create a new environment named <code>bestpractices_final</code> with all the packages specified in the <em>environment.yml</em> file (<code>-f</code> is shorthand for <code>--file</code>). Activate the new environment as before, using <code>conda activate bestpractices_final</code> (why is this the name?) and try running <code>python --version</code>. Try running <code>conda list</code> to see all the installed packages. Everything listed in the <code>environment.yml</code> should be there, along with all dependencies.<br>
+Note: The <code>pip</code> equivalent, <strong><em>once you have an activated virtual environment with a Python interpreter</em></strong>, is:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This will install all packages listed in a <code>requirements.txt</code> file from PyPI.</p></li>
 <li><p>A final tip: append <code>--dry-run</code> to your <code>conda</code> commands to see what they will do without actually making any changes and refer to the <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html#cheatsheet"><code>conda</code> commands cheatsheet</a> if you’re unsure about how to accomplish something.</p></li>
 </ol>
