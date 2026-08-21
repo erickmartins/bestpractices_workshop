@@ -9,8 +9,7 @@
 
 3. [`Conda`](https://conda.org) is a tool that combines all three of these functionalities. It allows you to create and manage virtual environments, manage different versions of Python, and install packages. Conda is particularly popular in the scientific Python community due to its ability to handle complex system-level dependencies, such as GPU support, and its support for packages outside of the Python ecosystem (such as R, C libraries, etc).
 
-4. There are other tools that can be used to manage virtual environments, such as [`venv`](https://docs.python.org/3/library/venv.html) (built into Python) and newer ones like [`uv`](https://docs.astral.sh/uv/) and [`pixi`](https://pixi.sh/latest/). These use a **project** oriented approach, where the environment is tied to a specific project directory. Conda, on the other hand creates and manages environments centrally, independently of any specific directory. At the end of the day, it's a matter of preference and use case, but the key take home message is to actually **always use virtual environments for your projects!**
-
+4. There are other tools that can be used to manage virtual environments, such as [`venv`](https://docs.python.org/3/library/venv.html) (built into Python) and newer ones like [`uv`](https://docs.astral.sh/uv/) and [`pixi`](https://pixi.sh/latest/). These use a **project** oriented approach, where the environment is tied to a specific project directory. Conda, on the other hand creates and manages environments centrally, independently of any specific directory. At the end of the day, it's a matter of preference and use case, but the key take home message is to **always use virtual environments for your projects!**
 ## Installing conda, *if you don't have it already*
 
 (Note: I encourage using `conda` version no older than 23.10.)
@@ -37,7 +36,8 @@
     you do should have its *own environment*. You should never be doing
     any work on your base environment: it's the environment `conda` uses
     to run itself, so a conflict or problem there can break your entire `conda`
-    installation.
+    installation. This is the #1 mistake people new to `conda` make and a
+    very common source of frustration.
 
 3.  So first of all, let's try to create a new, "clean" environment.
     Type:  
@@ -55,7 +55,9 @@
 
     This should change the beginning of your prompt to `(bestpractices)`.  
     **Always remember to activate the environment you want to use or 
-    make changes to!**
+    make changes to!** If you do not activate an environment, anything you
+    do will be done to the `base` environment - and as we just discussed on
+    point 2, you **NEVER** want to do that.
 
 4.  Try running `python`. It probably didn't work. Why?
 
@@ -76,9 +78,15 @@
 6.  Now let's try to create an environment *with* Python. Type:
 
     ```bash
-    conda create -n bestpractices python=3.13
+    conda create -n bestpractices python=3.14
     ```
-    (or pick a version of your choice). Activate your new environment as before and try:
+    (or pick a version of your choice). Activate your new environment as before with
+    
+    ```bash
+    conda activate bestpractices
+    ```
+
+    and try:
     
     ```bash
     python --version
@@ -116,8 +124,8 @@
 
 4.  This time, we will try to create an environment using the
     *environment.yml* in this repository. Navigate to where you cloned
-    the workshop repository in your terminal and have a look at the
-    contents of *environment.yml*. 
+    or downloaded the workshop repository in your terminal and have a 
+    look at the contents of *environment.yml*. 
 
 5. Now, run: 
     
@@ -126,10 +134,10 @@
     ```
     This will create a new environment named `bestpractices_final` with
     all the packages specified in the *environment.yml* file (`-f` is shorthand for `--file`).
-    Activating the new environment as before, using `conda activate bestpractices_final` (why is this the name?) and try running `python --version`. Try running `conda list` to see all the installed
+    Activate the new environment as before, using `conda activate bestpractices_final` (why is this the name?) and try running `python --version`. Try running `conda list` to see all the installed
     packages. Everything listed in the `environment.yml` should be there, along with all
     dependencies.  
-    Note: The `pip` equivalent, *once you have an activated virtual environment with a Python interpreter*, is:
+    Note: The `pip` equivalent, ***once you have an activated virtual environment with a Python interpreter***, is:
     
     ```bash
     pip install -r requirements.txt

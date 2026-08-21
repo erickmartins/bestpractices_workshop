@@ -26,7 +26,7 @@ Type hints are part of the Python standard library since Python 3.5. For more de
 
     These can be combined using bracket notation like: `list[int]`, `dict[str, float]`, etc.
 
-    You can also import additional types from the [`typing` module](https://docs.python.org/3/library/typing.html#) or other modules you use
+    You can also import additional types from the [`typing` module](https://docs.python.org/3/library/typing.html#) or other modules you use.
 
 5. Type hints are not enforced at runtime, but you can use tools like [`mypy`](https://mypy-lang.org/) to check your code for type errors. To check your typed code, run:
     

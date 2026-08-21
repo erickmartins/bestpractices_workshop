@@ -5,3 +5,4 @@ dependencies:
   - pytest
   - coverage
   - ruff
+  - mypy

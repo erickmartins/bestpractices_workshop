@@ -1,6 +1,6 @@
 # Testing Python code with `pytest`
 
-1.  In this section, we are going to be using _pytest_ to run automated tests on some code. The code we are going to be using is in the **arrays** folder within this repository. The functions that will be tested are in **arrays.py**, and the test code will go in **test_arrays.py**. Testing your code is extremely important, and it should be done WHILE you are writing it, rather than AFTER. 
+1.  In this section, we are going to be using _pytest_ to run automated tests on some code. The code we are going to be using is in the **arrays** folder within this repository. The functions that will be tested are in **arrays.py**, and the test code will go in **test_arrays.py**. Testing your code is extremely important, and it should be done **WHILE** you are writing it, rather than **AFTER**. 
 
 2. Usual methods for testing code are doing some manual checks, such as running it over particular input files or variables and checking the results. This has limitations: it might fail to check some parts of the code, or it might fail to find errors that are not immediately obvious. In either case, it is also difficult to find exactly where your errors might be. 
 
@@ -91,7 +91,7 @@ But you can also create your own: fixtures can be used to set up test data, crea
 
 ## Automated testing
 
-1. If you're using GitHub for your code repositories, you can set up automated testing so that your tests are run automatically whenever you push new code or open a pull request. This is done using GitHub Actions, which allows you to define workflows that run on specific events.
+1. If you're using GitHub or Gitlab for your code repositories, you can set up automated testing so that your tests are run automatically whenever you push new code or open a pull request. This is done using GitHub Actions, which allows you to define workflows that run on specific events.
 
 2. Let's look at the file at `.github/workflow/run_tests.yml`. This is a _Github Action_ file - it will specify actions that will happen on Github when you do some things on your repository. What is happening here? When it is triggered? Try using a file like this in one of your repositories (if you have one) or a fork of this repository, pushing a new commit to Github and checking the "actions" tab on your repository's page. 
 
